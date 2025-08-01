@@ -1,7 +1,9 @@
-require_relative './config/environment'
-require 'sinatra/activerecord/rake'
+require_relative "./config/environment"
+require "sinatra/activerecord/rake"
 
-desc 'Start IRB console with models loaded'
+desc "Start the console"
 task :console do
-  exec "irb -r ./config/environment"
+  require "pry"
+  ActiveRecord::Base.logger = Logger.new(STDOUT)
+  Pry.start
 end
